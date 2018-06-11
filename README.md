@@ -178,5 +178,8 @@ and decoding where it left off.
 
 Pyp also comes with a few handy input plugins, that make the collection of data
 from your SolarEdge inverter quite easy, and there are some output plugins too.
+The Pysolaredge library was separated from Pyp, because Pyp turned out to be
+quite a generic tool, that can be used for all kinds of data processing, not
+just SolarEdge data.
 
 Pyp will be up on Github shorty.
