@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Python-solaredge (pysolaredge for short) is a library for decrypting and
+Python-solaredge (*pysolaredge* for short) is a library for decrypting and
 decoding messages from a SolarEdge photo-voltaic installation (solar panels,
 optimizers and inverters, mainly). Such an installation normally reports its
 statistics to a server operated by SolarEdge.  This libray allows you to decode
@@ -17,15 +17,15 @@ installation, so I wrote this, using Joe Buehls code as a study guide.
 
 I am very grateful to Joe Buehl and all the contributors to his project for the
 work they have done, in particular the reverse engineering of the SolarEdge
-protocol and the encryption. Truely remarkable work, that I could never have
+protocol and the encryption. Truly remarkable work, that I could never have
 done myself.
 
 This library is written in Python3 and tested on Python 3.5 on Debian.
 
 **Status**: alpha. It works, but it's not complete and it needs testing.
 
-It uses a few modules from the standard library: logging, binascii, struct
- and time. It has one external dependency:
+It uses a few modules from the standard library: *logging*, *binascii*, *struct*
+ and *time*. It has one external dependency:
 [pycrypto](https://pypi.org/project/pycrypto/) (*python3-crypto* in Debian).
 
 ## The SolarEdge protocol
@@ -88,6 +88,9 @@ sent over the network, you need a few things:
 * a temporary key that is rotated regularly (every few hours), in the form of a
   so-called '0x0503 message'
 
+If the data you have is *not* encrypted, you do not need any key material, of
+course. Decoding messages works just the same, in that case.
+
 How to get all of those things, I will cover later. But if you have them, using
 this library is as simple as this:
 
@@ -109,9 +112,21 @@ somewhere (in a file, a database or something similar) because it will be
 needed every time the decoder is initialized. The library does NOT handle the
 storage of 0x0503 messages, that is up to the application using this library.
 
+The Decoder class has only 3 methods meant to be used publicly:
+
+* `set_privkey(privkey)` - set the private key if not done when instantiating
+* `set_last_503_msg(msg)` - set the last 0x0503 message, if not done when
+  instantiating
+* `decode(msg)` - decode a message
+
+Please note that the *last_503_msg* in the context of this package is supposed
+to be the *entire* message, starting with the SolarEdge magic sequence (`12 34
+56 79`), up to and including the checksum, because the message will be pulled
+through the decoder like any other message.
+
 ## Getting the private key and the data
 
-[Joe Buelh](https://github.com/jbuehl/solaredge/) has written extensively about
+[Joe Buehl](https://github.com/jbuehl/solaredge/) has written extensively about
 how to get the data from a SolarEdge inverter, so I am not going to copy that
 here. By far the easiest and non-intrusive way to get the data, is to passively
 sniff it from the network. For that to be possible, the device that you run
@@ -121,14 +136,14 @@ SolarEdge inverter is on a dedicated VLAN. This makes it easy to sniff the data
 with *tcpdump* or *Wireshark*. If this kind of setup is not possible for you, I
 can think of a few other ways to passively sniff the data:
 
-* Use a network hub (not a switch) to connect the inverter and your PC to the
-  rest of the network. A hub will send all traffic to all ports, so you can
+* Use a network hub (not a switch) to connect the inverter and your server to
+  the rest of the network. A hub will send all traffic to all ports, so you can
   easily sniff it. Network hubs are becoming hard to get, though.
 * Use port mirroring on a switch to copy all traffic from the inverter to
   another port on the switch, so you can sniff it there. It takes a managed
   switch to be able to do this, though.
 * Use a device like a Raspberry Pi with two ethernet interfaces in a bridge.
-  Connect it 'in serial' between the inverter and the router. All traffic will
+  Connect it *in serial* between the inverter and the router. All traffic will
   pass through the bridge and you can sniff it there.
 
 The private key that is used for the encryption will be sent from the inverter
@@ -136,6 +151,10 @@ to the SolarEdge server in a couple of messages with function code 0x0090.
 These are normally only sent once, so if you do not want to resort to a serial
 connection to extract the key from the inverter, it is important to start
 storing the network communication from the inverter right from the start.
+
+Please note that the code for extracting the private key with this library has
+not been fully implemented yet, so I recommend keeping a dump of all traffic,
+at least until you have successfully obtained your private key.
 
 ## Integrated solution: Pyp
 
