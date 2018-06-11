@@ -172,8 +172,9 @@ Pyp is a simple data pipeline. Think of it as an extremely simple version of
 Apache Flink or AWS Kinesis.
 
 Pyp comes with a 'solaredge' decoder plugin, that uses Pysolaredge for the
-decrypting and decoding, but it also stores 0x0503 messages, and I have some
-ideas for more efficiently handling the private key.
+decrypting and decoding. It also stores 0x0503 messages, and reads them back on
+startup, so the decryptor can be initialized correctly and pick up decrypting
+and decoding where it left off.
 
 Pyp also comes with a few handy input plugins, that make the collection of data
 from your SolarEdge inverter quite easy, and there are some output plugins too.
