@@ -4,3 +4,5 @@ from .exceptions import SeError,CryptoNotReadyError
 
 logger = logging.getLogger(__package__)
 logger.addHandler(logging.NullHandler())
+
+name = 'pysolaredge'
