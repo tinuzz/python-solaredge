@@ -85,8 +85,8 @@ sent over the network, you need a few things:
 
 * the encrypted data
 * the private key that was negotiated in the beginning
-* a temporary key that is rotated regularly (every few hours), in the form of a
-  so-called '0x0503 message'
+* a temporary key that is rotated regularly (every few hours to days), in the
+  form of a so-called '0x0503 message'
 
 If the data you have is *not* encrypted, you do not need any key material, of
 course. Decoding messages works just the same, in that case.
@@ -183,3 +183,4 @@ quite a generic tool, that can be used for all kinds of data processing, not
 just SolarEdge data.
 
 Pyp will be up on Github shorty.
+
