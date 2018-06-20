@@ -24,6 +24,8 @@ class Decoder(object):
     def set_privkey(self, privkey):
         if len(privkey) == 32:
             privkey = binascii.unhexlify(privkey)
+        if len(privkey) != 16:
+            raise CryptoNotReadyError('Invalid private key: key should be 128 bits / 16 bytes')
         self.privkey = privkey
         self.init_crypto()
 
@@ -138,6 +140,7 @@ class Decoder(object):
             return pdata
         else:
             self.logger.info('No 0x0500 payload found, nothing to do')
+            return {}
 
     def handle_503(self):
         # This method will reinitialize the decryptor if the private key is known
