@@ -147,7 +147,7 @@ class Decoder(object):
         if self.privkey is None:
             raise SeError('Cannot handle 0x0503 message: missing private key')
 
-        self.crypto = crypto.Crypto(privkey,self.payload)
+        self.crypto = crypto.Crypto(self.privkey,self.payload)
 
         # We must return *something*
         return { 'result': 'success' }
