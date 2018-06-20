@@ -5,8 +5,8 @@ from .devicebase import Device
 class Event(Device):
 
     labels = [
-        'Date', 'Time', 'Timestamp', 'Type', 'Param1',
-        'Param2', 'Param3', 'Param4', 'Param5'
+        'date', 'time', 'timestamp', 'type', 'param1',
+        'param2', 'param3', 'param4', 'param5'
     ]
     fmt = '<LLLLLLL'
     item_idx = [ 0, 0, 0, 1, 2, 3, 4, 5, 6 ]
