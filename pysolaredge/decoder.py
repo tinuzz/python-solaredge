@@ -22,6 +22,8 @@ class Decoder(object):
         self.set_last_503_msg(last_503_msg)
 
     def set_privkey(self, privkey):
+        if len(privkey) == 32:
+            privkey = binascii.unhexlify(privkey)
         self.privkey = privkey
         self.init_crypto()
 
@@ -145,8 +147,6 @@ class Decoder(object):
         if self.privkey is None:
             raise SeError('Cannot handle 0x0503 message: missing private key')
 
-        # TODO: check key length to decide whether to unhexlify or not
-        privkey = binascii.unhexlify(self.privkey)
         self.crypto = crypto.Crypto(privkey,self.payload)
 
         # We must return *something*
