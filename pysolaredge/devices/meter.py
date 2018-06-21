@@ -3,7 +3,7 @@ from .devicebase import Device
 class Meter(Device):
 
     labels = [
-        'date', 'time', 'timestamp', 'Rec_Type', 'e_exp_total', 'e_imp_total'
+        'date', 'time', 'timestamp', 'rec_type', 'e_exp_total', 'e_imp_total'
         'interval', 'e_exp_intv', 'e_imp_intv', 'p_exp', 'p_imp'
     ]
     fmt = '<LBBLH2sLH2sLH2sLH2sLLLff'   # 20 items

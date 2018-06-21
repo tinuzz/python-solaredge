@@ -32,7 +32,7 @@ class Device(object):
 
     def device_data(self, parsed):
         result = {}
-        result["id"] = self.dev_id
+        result["dev_id"] = self.dev_id
         for i in range(len(self.labels)):
             if self.labels[i].lower() == 'date':
                 result[self.labels[i]] = utils.format_datestamp(parsed[i])
