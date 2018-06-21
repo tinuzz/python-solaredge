@@ -156,6 +156,50 @@ Please note that the code for extracting the private key with this library has
 not been fully implemented yet, so I recommend keeping a dump of all traffic,
 at least until you have successfully obtained your private key.
 
+## Storing data in a database with Peewee
+
+[Peewee](http://docs.peewee-orm.com/en/latest/) is a simple and small ORM, that
+makes it quite easy to access relational databases. It uses model classes to
+map database tables to Python objects.
+
+Pysolaredge includes a module that takes care of the hard part: mapping the
+decoded data from the decoder module to columns in a database table. Using it
+is quite simple. First, install the Peewee ORM and the database driver of your
+choice (MySQL, PostgreSQL and SQLite are supported):
+
+```
+pip install peewee mysqlclient
+```
+
+Then, import the necessary stuff in your program, initialize the database
+and store the data:
+
+```
+from peewee import *
+from pysolaredge.peewee import db_proxy, Inverter, Optimizer
+
+# Set db, db_user, db_pass and db_host appropriately
+dbc = MySQLDatabase(db, user=db_user, password=db_pass, host=db_host)
+db_proxy.initialize(dbc)
+dbc.connect()
+dbc.create_tables([Inverter, Optimizer])
+
+# See decoder usage above!
+result = decoder.decode('<message to decode>')
+
+if 'decoded' in result:
+    if 'inverters' in result['decoded']:
+        for dev_id,inverter in result['decoded']['inverters'].items():
+            Inverter.create(**inverter)
+    if 'optimizers' in result['decoded']:
+        for dev_id,optimizer in result['decoded']['optimizers'].items():
+            Optimizer.create(**optimizer)
+```
+
+The added value of the `pysolaredge.peewee` module is, that it provides
+a database structure that is a one-on-one mapping to the data structure
+that is returned by the decoder.
+
 ## Integrated solution: Pyp
 
 When I first started working on my SolarEdge scripts, I quickly realised, that

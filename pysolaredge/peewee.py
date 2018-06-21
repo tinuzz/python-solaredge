@@ -12,6 +12,7 @@ class Inverter(BaseModel):
     date = CharField()
     time = CharField()
     uptime = BigIntegerField()
+    interval = IntegerField()
     mode = SmallIntegerField()
     v_ac = FloatField()
     v_dc = FloatField()
@@ -26,6 +27,10 @@ class Inverter(BaseModel):
     temperature = FloatField()
     pf_pct = FloatField()
     cos_phi = FloatField()
+    e_ac_intv = FloatField()
+    i_dc = FloatField()
+    i_rcd = FloatField()
+    i_out_dc = FloatField()
 
 class Optimizer(BaseModel):
     dev_id = CharField()
