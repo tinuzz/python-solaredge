@@ -28,6 +28,9 @@ It uses a few modules from the standard library: *logging*, *binascii*, *struct*
  and *time*. It has one external dependency:
 [pycrypto](https://pypi.org/project/pycrypto/) (*python3-crypto* in Debian).
 
+If you want to use the included module for storing decoded data in MySQL or
+PostgreSQL, you also need [peewee](https://pypi.org/project/peewee/)
+
 ## The SolarEdge protocol
 
 A simple SolarEdge installation consists of 3 main types of components:
