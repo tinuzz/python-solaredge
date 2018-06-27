@@ -213,6 +213,9 @@ class Decoder(object):
         ptr = 0
 
         while ptr < len(data):
+            if len(data) < ptr + header_len:
+                self.logger.warning('Only %d bytes of data left, not a valid chunk' % len(data) - ptr)
+                break
             # Read the header
             dev_type, dev_id, chunk_len = struct.unpack("<HLH", data[ptr:ptr + header_len])
             dev_id = utils.dev_id_str(dev_id)
