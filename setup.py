@@ -12,7 +12,7 @@ the data yourself, and use it how you see fit.
 
 setuptools.setup(
     name="pysolaredge",
-    version="0.5.1",
+    version="0.5.5",
     author="Martijn Grendelman",
     author_email="m@rtijn.net",
     description="Library for decrypting and decoding messages from SolarEdge inverters",
