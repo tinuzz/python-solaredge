@@ -5,12 +5,13 @@
 The following note was largely shamelessly stolen from https://github.com/jbuehl/solaredge/,
 because it is equally true for this library.
 
-When this project was started, SolarEdge inverters communicated with their monitoring
-server using a proprietary data format that was sent in the clear. It was possible to
-reverse engineer most of the messages in order to obtain the optimizer level data which
-was not otherwise available. The same data was also available on the RS232 and RS485
-interfaces which were provided on their inverters. A few years later, SolarEdge
-implemented a homegrown encryption algorithm for the communications to their monitoring
+When jbuehl's project was started, even before this Python library was created from it,
+SolarEdge inverters communicated with their monitoringserver using a proprietary
+data format that was sent in the clear. It was possible to reverse engineer most
+of the messages in order to obtain the optimizer level data whichwas not otherwise
+available. The same data was also available on the RS232 and RS485interfaces which
+were provided on their inverters. A few years later, SolarEdgeimplemented a
+homegrown encryption algorithm for the communications to their monitoring
 server, which prevented access for a while until an effort by a number of contributors
 to this project was successful in figuring out the algorithm which got it working again.
 
