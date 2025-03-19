@@ -1,11 +1,9 @@
 # Python-solaredge
 
-## Note
+## 2024 update
 
 The following note was largely shamelessly stolen from https://github.com/jbuehl/solaredge/,
 because it is equally true for this library.
-
-! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !  2024 update ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
 
 When this project was started, SolarEdge inverters communicated with their monitoring
 server using a proprietary data format that was sent in the clear. It was possible to
@@ -24,8 +22,6 @@ inverter is up to date, the only way to access performance data is going to be v
 RS485 interface.
 
 This project is now archived, and no development or support of any kind will take place here.
-
-! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
 
 ## Introduction
 
