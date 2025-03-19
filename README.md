@@ -1,5 +1,32 @@
 # Python-solaredge
 
+## Note
+
+The following note was largely shamelessly stolen from https://github.com/jbuehl/solaredge/,
+because it is equally true for this library.
+
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !  2024 update ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+
+When this project was started, SolarEdge inverters communicated with their monitoring
+server using a proprietary data format that was sent in the clear. It was possible to
+reverse engineer most of the messages in order to obtain the optimizer level data which
+was not otherwise available. The same data was also available on the RS232 and RS485
+interfaces which were provided on their inverters. A few years later, SolarEdge
+implemented a homegrown encryption algorithm for the communications to their monitoring
+server, which prevented access for a while until an effort by a number of contributors
+to this project was successful in figuring out the algorithm which got it working again.
+
+In the years since then, SolarEdge has introduced new products which no longer support
+the RS232 interface, and they have dropped their encryption algorithm and are now using
+the far more secure and mainstream SSL/TLS encryption method which is essentially not
+hackable. This means that if you have a newer inverter or if the firmware in your older
+inverter is up to date, the only way to access performance data is going to be via the
+RS485 interface.
+
+This project is now archived, and no development or support of any kind will take place here.
+
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !
+
 ## Introduction
 
 Python-solaredge (*pysolaredge* for short) is a library for decrypting and
